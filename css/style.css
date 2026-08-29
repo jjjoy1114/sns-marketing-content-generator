@@ -12,8 +12,24 @@
   --primary: #3b6cff;     /* 강조색(버튼 등) */
   --primary-text: #ffffff;
   --border: #e3e7ee;      /* 테두리 */
+  --surface-alt: #eef1f7; /* 번갈아 나오는 섹션 배경 */
   --shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
   --radius: 12px;
+}
+
+/* ===== 다크 모드 색상 (보너스) =====
+   <html>에 data-theme="dark" 가 붙으면 위 색상들을 이 값으로 덮어씁니다.
+   변수만 바꾸므로 화면 전체가 한 번에 다크로 전환됩니다. */
+html[data-theme="dark"] {
+  --bg: #12151c;
+  --surface: #1b2130;
+  --text: #e8ecf3;
+  --text-soft: #a3adbd;
+  --primary: #5b82ff;
+  --primary-text: #ffffff;
+  --border: #2c3446;
+  --surface-alt: #161b26;
+  --shadow: 0 2px 12px rgba(0, 0, 0, 0.45);
 }
 
 /* ===== 기본 초기화 ===== */
@@ -24,6 +40,7 @@ body {
   background: var(--bg);
   color: var(--text);
   line-height: 1.6;
+  transition: background 0.2s, color 0.2s;   /* 모드 전환 시 부드럽게 */
 }
 
 /* 가운데 정렬 컨테이너 */
@@ -74,7 +91,7 @@ html { scroll-behavior: smooth; }
 
 /* ===== 섹션 공통 ===== */
 .section { padding: 64px 0; }
-.section-alt { background: #eef1f7; }  /* 번갈아 배경색 */
+.section-alt { background: var(--surface-alt); }  /* 번갈아 배경색 (다크모드 자동 대응) */
 .section h2 { font-size: 26px; margin-bottom: 8px; }
 .section-desc { color: var(--text-soft); margin-bottom: 28px; }
 

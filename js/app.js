@@ -102,6 +102,33 @@ function showMessage(text) {
   hide(placeholder);
 }
 
+// ----- 6. 다크 모드 (보너스) -----
+// 라이트/다크 전환 + 선택 상태를 localStorage에 저장해서 새로고침 후에도 유지.
+const themeToggle = document.getElementById("themeToggle");
+const rootEl = document.documentElement; // <html> 태그
+
+function applyTheme(theme) {
+  if (theme === "dark") {
+    rootEl.setAttribute("data-theme", "dark");
+    themeToggle.textContent = "☀️ 라이트";
+  } else {
+    rootEl.removeAttribute("data-theme");
+    themeToggle.textContent = "🌙 다크";
+  }
+}
+
+// 페이지 열릴 때: 저장된 모드 복원 (저장값 없으면 라이트)
+applyTheme(localStorage.getItem("theme") || "light");
+
+// 버튼 클릭: 모드 전환 + 선택 저장
+themeToggle.addEventListener("click", () => {
+  const isDark = rootEl.getAttribute("data-theme") === "dark";
+  const next = isDark ? "light" : "dark";
+  applyTheme(next);
+  localStorage.setItem("theme", next);
+});
+
+
 // ----- 5. 백엔드 AI 호출 (fetch로 /api/generate 요청) -----
 // 프론트 → Python 백엔드(api/generate.py) → Gemini → 결과(JSON) 순으로 흐릅니다.
 function callApi(data) {
