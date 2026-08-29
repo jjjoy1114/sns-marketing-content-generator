@@ -30,15 +30,24 @@
 
 ```text
 sns-marketing-content-generator/
-├── index.html          # 화면(구조)
-├── css/style.css       # 디자인 (다크모드 색상 포함)
-├── js/app.js           # 동작 (입력검증·fetch 호출·결과표시·다크모드)
-├── api/generate.py     # AI 백엔드 (Vercel Serverless Function)
-├── requirements.txt    # Python 패키지 목록 (google-genai)
-├── vercel.json         # 배포 설정 (정적 + api 함수 구조)
-├── .env.example        # 환경 변수 예시 (실제 키는 .env에, git 미포함)
-├── docs/               # 서비스 기획서 등 문서
-└── images/             # 증빙 캡처
+├── index.html              # 화면(구조)
+├── css/style.css           # 디자인 (다크모드 색상 포함)
+├── js/app.js               # 동작 (입력검증·fetch 호출·결과표시·다크모드)
+├── api/
+│   ├── generate.py         # AI 백엔드 (Vercel Serverless Function)
+│   └── test_local.py       # 로컬 AI 호출 테스트용 (배포 제외)
+├── dev_server.py           # 로컬 개발 서버 (프론트+백엔드 함께 실행, 배포 제외)
+├── requirements.txt        # Python 패키지 목록 (google-genai)
+├── vercel.json             # 배포 설정 (framework: null → 정적 + api 함수)
+├── .vercelignore           # 배포 제외 목록 (dev_server.py, api/test_local.py)
+├── .env.example            # 환경 변수 예시 (실제 키는 .env에, git 미포함)
+├── .gitignore              # .env 등 비공개 파일 제외
+├── docs/
+│   ├── 서비스_기획서.md      # 목적·타깃·페이지 구성·AI 입출력/실패처리
+│   └── 요구사항_충족표.md    # 과제 요구사항 대조표
+└── images/
+    ├── raw/                # 원본 캡처
+    └── report/             # 제출용 증빙 캡처
 ```
 
 ## AI 기능 흐름
