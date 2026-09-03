@@ -1,3 +1,6 @@
 .env
 __pycache__/
 .vercel
+
+docs/과제지시서.md
+docs/발표자료.md
